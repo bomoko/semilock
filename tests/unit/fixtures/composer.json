@@ -1,0 +1,104 @@
+{
+    "name": "amazeelabs/algm_drupal8_baseimage",
+    "description": "Project template for Drupal 8 with default modules",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "amazee.io",
+            "role": "DevOps"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.2",
+        "drupal-composer/drupal-scaffold": "^2.2",
+        "cweagans/composer-patches": "~1.0",
+        "drupal/core": "~8.0",
+        "drush/drush": "~8.0",
+        "drupal/console": "~1.0",
+        "drupal/config_installer": "1.x-dev",
+        "drupal/redis": "^1.2",
+        "drupal/poll": "1.2",
+        "drupal/search_api": "^1.6",
+        "drupal/search_api_solr": "^1.2",
+        "drupal/varnish_purge": "^1.10",
+        "drupal/purge": "^3.0",
+        "wikimedia/composer-merge-plugin": "^1.4",
+        "drupal/admin_toolbar": "^1.27",
+        "drupal/cdn": "^3.3",
+        "drupal/password_policy": "^3.0@alpha",
+        "drupal/pathauto": "^1.4",
+        "drupal/ultimate_cron": "^2.0@alpha"
+    },
+    "require-dev": {
+        "behat/mink": "~1.7",
+        "behat/mink-goutte-driver": "~1.2",
+        "jcalderonzumba/gastonjs": "~1.0.2",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+        "mikey179/vfsstream": "~1.2",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "~2.8"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
+    "extra": {
+        "merge-plugin": {
+            "include": [
+                "composer.dist.json",
+                "composer.local.json",
+                "extensions/*/composer.json",
+                "depimages/*/composer.json"
+            ],
+            "recurse": false,
+            "replace": false,
+            "ignore-duplicates": false,
+            "merge-dev": false,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-scripts": false
+        },
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "drupal-scaffold": {
+            "excludes": [
+                "sites/development.services.yml",
+                "sites/example.settings.local.php"
+            ]
+        }
+    }
+}
