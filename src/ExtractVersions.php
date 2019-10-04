@@ -3,8 +3,8 @@
 namespace ComposerFixed;
 
 use Localheinz\Composer\Json\Normalizer\ComposerJsonNormalizer;
-
 use Localheinz\Json\Normalizer\Json;
+use Camspiers\JsonPretty\JsonPretty;
 
 
 class ExtractVersions
@@ -48,12 +48,10 @@ class ExtractVersions
 
     public static function formatJson(array $json)
     {
-        $encoded = json_encode($json);
-        $normalizer = new ComposerJsonNormalizer();
-//        $json = Json::fromEncoded($encoded);
-//        $normalizedJson = $normalizer->normalize($json);
+        $encoded = json_encode($json, JSON_UNESCAPED_SLASHES);
+        $jsonPretty = new JsonPretty();
 
-        echo $encoded;//$normalizedJson->encoded();
+        echo $jsonPretty->prettify($encoded, null, "\t", $is_json=true);
     }
 
     public static function getMappedLockDataFromFileArray(array $lockFile)
