@@ -25,7 +25,6 @@ class GenerateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-//        $output->writeln('Extracting versions...');
         $output->writeln(ExtractVersions::extractFromFiles($input->getArgument('json'), $input->getArgument('lock')));
     }
 }
