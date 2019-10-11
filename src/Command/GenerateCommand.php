@@ -12,7 +12,7 @@ class GenerateCommand extends Command
 {
 
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'composer_fixed:generate';
+    protected static $defaultName = 'semilock:generate';
 
     protected function configure()
     {

@@ -11,7 +11,7 @@ class GenerateCommandTest extends TestCase
         $composer = json_decode(file_get_contents(__DIR__ . "/fixtures/composer.json"), true);
         $lock = json_decode(file_get_contents(__DIR__ . "/fixtures/composer.lock.old"), true);
 
-        $cmd = exec(__DIR__ . '/../../bin/semilock composer_fixed:generate ' . __DIR__ . '/fixtures/composer.json ' . __DIR__ . '/fixtures/composer.lock.old', $output);
+        $cmd = exec(__DIR__ . '/../../bin/semilock semilock:generate ' . __DIR__ . '/fixtures/composer.json ' . __DIR__ . '/fixtures/composer.lock.old', $output);
 
         $json = Json::fromEncoded(json_encode($output, JSON_UNESCAPED_SLASHES));
 
