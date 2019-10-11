@@ -1,4 +1,5 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 
 use Localheinz\Json\Normalizer\Json;
@@ -17,6 +18,6 @@ class GenerateCommandTest extends TestCase
 
         $this->assertJson($json);
         // Run the below cmd to output new composer.json
-        // $ php bin/semilock composer_fixed:generate tests/unit/fixtures/composer.json tests/unit/fixtures/composer.lock.old > composer-test.json
+        // $ php bin/semilock semilock:generate tests/unit/fixtures/composer.json tests/unit/fixtures/composer.lock.old -o composer-test.json
     }
 }

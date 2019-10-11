@@ -2,6 +2,7 @@
     "name": "bomoko/semilock",
     "license": "MIT",
     "type": "library",
+    "description": "",
     "authors": [
         {
             "name": "Blaize Kaye",
@@ -18,7 +19,7 @@
     },
     "autoload": {
 	  "psr-4": {
-  		"ComposerFixed\\": "src/"
+        "Semilock\\": "src/"
 	  }
     },
     "bin": ["bin/semilock"]

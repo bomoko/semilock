@@ -17,6 +17,6 @@ use Symfony\Component\Console\Application;
 
 $application = new Application();
 
-$application->add(new \ComposerFixed\Command\GenerateCommand());
+$application->add(new \Semilock\Command\GenerateCommand());
 
 $application->run();

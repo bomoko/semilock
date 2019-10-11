@@ -1,16 +1,17 @@
 <?php
 
-namespace ComposerFixed;
+namespace Semilock;
 
 use Localheinz\Composer\Json\Normalizer\ComposerJsonNormalizer;
 use Localheinz\Json\Normalizer\Json;
 use Camspiers\JsonPretty\JsonPretty;
+use phpDocumentor\Reflection\Types\Self_;
 
 
 class ExtractVersions
 {
 
-    public static function extractFromFiles($composerJson, $composerLock)
+    public static function extractFromFiles($composerJson, $composerLock, $outputFilePath)
     {
         if(!file_exists($composerJson) || !file_exists($composerLock)) {
             throw new \Exception("Could not open files");
@@ -23,7 +24,15 @@ class ExtractVersions
         if(json_last_error()) {
             throw new \Exception("Error decoding {$composerLock}: " . json_last_error_msg());
         }
-        return self::formatJson(self::extract($json, $lock));
+
+        if ($outputFilePath) {
+            $extract = self::extract($json, $lock);
+            file_put_contents($outputFilePath, self::formatJson($extract));
+        }
+        else {
+            $extract = self::extract($json, $lock);
+            echo self::formatJson($extract);
+        }
     }
 
     public static function extract(array $composerJson, array $composerLock)
@@ -51,7 +60,7 @@ class ExtractVersions
         $encoded = json_encode($json, JSON_UNESCAPED_SLASHES);
         $jsonPretty = new JsonPretty();
 
-        echo $jsonPretty->prettify($encoded, null, "\t", $is_json=true);
+        return $jsonPretty->prettify($encoded, null, "\t", $is_json=true);
     }
 
     public static function getMappedLockDataFromFileArray(array $lockFile)
