@@ -1,8 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-use ComposerFixed\ExtractVersions;
-
+use Semilock\ExtractVersions;
 
 class ExtractVersionsTest extends TestCase
 {
