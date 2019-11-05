@@ -2,8 +2,6 @@
 
 namespace Semilock;
 
-use Localheinz\Composer\Json\Normalizer\ComposerJsonNormalizer;
-use Localheinz\Json\Normalizer\Json;
 use Camspiers\JsonPretty\JsonPretty;
 use phpDocumentor\Reflection\Types\Self_;
 

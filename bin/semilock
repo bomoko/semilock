@@ -2,8 +2,8 @@
 <?php
 
 $paths = [
-  __DIR__.'/../vendor/autoload.php', // locally
-  __DIR__.'/../../../autoload.php' // dependency
+  __DIR__ . '/../vendor/autoload.php', // locally
+  __DIR__ . '/../../../autoload.php' // dependency
 ];
 
 foreach ($paths as $path) {
@@ -17,6 +17,6 @@ use Symfony\Component\Console\Application;
 
 $application = new Application();
 
-$application->add(new \Semilock\Command\GenerateCommand());
-
-$application->run();
+$application->add(new \Semilock\Command\GenerateCommand())
+  ->getApplication()->setDefaultCommand('semilock:generate', true)
+  ->run();
